@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变大变色</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .active {
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p :style="{fontSize:fontSize+'px'}" :class="{active:isActive}">实验楼</p>
+        <button @click="change">变大变色</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                fontSize: 20,
+                isActive: false,
+            },
+            methods: {
+                change() {
+                    console.log(1)
+                    this.fontSize += 10
+                    this.isActive = !this.isActive
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

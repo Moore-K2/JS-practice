@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue.js"></script>
+    <title>过滤</title>
+</head>
+
+<body>
+    <div class="app">
+        <span>原数组为：</span>
+        <span v-for="(num,idx) in numberArray" ::key="idx">{{num}}</span>
+        <p>filter:显示数组中的奇数</p>
+        <button @click="change">现数组为:</button>
+        <span v-for="(num,idx) in numberArray2" ::key="idx">{{num}}</span>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data() {
+                return {
+                    numberArray: [1, 2, 3, 4, 5, 6, 7, 8],
+                    numberArray2: ''
+                }
+            },
+            methods: {
+                change() {
+                    this.numberArray2 = this.numberArray.filter(num => {
+                        return num % 2 == 1
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+
+
+</html>

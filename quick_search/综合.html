@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变大变色</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        * {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        nav>ul>li>a {
+            text-transform: uppercase;
+        }
+        
+        ul {
+            display: flex;
+            justify-content: center;
+            background: antiquewhite;
+        }
+        
+        nav>ul>li {
+            width: 20%;
+            /* height: 100%; */
+            line-height: 50px;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        nav>ul>li:hover {
+            box-shadow: 1px 0 10px red;
+        }
+        
+        nav>ul>li>ul {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        nav>ul>li>ul>li {
+            box-shadow: 1px 0 5px red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <nav>
+            <ul>
+                <li v-for="(item,index) in navbar" :key="index" @mouseover="curIdx(index)" @mouseout="changeIdx">
+                    <a href="javascript:;">{{item.name}}</a>
+                    <!-- 二级菜单 -->
+                    <ul v-if="item.child" v-show="current==index">
+                        <li v-for="(item2,idx) in item.child" :key="idx">
+                            <a href="javascript:;">{{item2}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // navbar 模拟后台获取到的菜单列表
+                navbar: [{
+                    name: "home",
+                    child: ["homeItem", "homeItem"],
+                }, {
+                    name: "contact",
+                    child: ["contactItem", "contactItem"],
+                }, {
+                    name: "about",
+                }, ],
+                current: null
+            },
+            methods: {
+                curIdx(idx) {
+                    this.current = idx
+                },
+                changeIdx() {
+                    this.current = null
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变大变色</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .active {
+            color: red
+        }
+        
+        * {}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul v-for="(item,idx) in userInfo" :key="idx">
+            <li>{{item}}</li>
+        </ul>
+        <p>通过改变对象值来添加身高</p>
+        <button @click="change2">添加身高2</button>
+        <p>通过Vue.set(target, key, val)添加身高</p>
+        <button @click="change">添加身高</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                userInfo: {
+                    name: 'Moore',
+                    age: 22,
+                    gender: 'malle'
+                }
+            },
+            methods: {
+                change() {
+                    Vue.set(this.userInfo, 'height', '180cm')
+                },
+                change2() {
+                    this.userInfo.height = '200cm'
+                    alert('无效')
+                }
+            },
+
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+/* the props */
+
+@import "https://unpkg.com/open-props";
+body {
+    background-color: var(--gray-7);
+    color: white;
+}
+
+span {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+    text-align: center;
+}
